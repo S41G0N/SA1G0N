@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig sys-devel/make >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=sys-libs/ncurses x11-libs/libxcb sys-libs/pam dev-libs/libpcre sys-libs/readline dev-libs/libev dev-libs/libconfig sys-devel/gcc
+DESCRIPTION=Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD
+EAPI=7
+HOMEPAGE=https://github.com/fairyglade/ly
+INHERIT=git-r3
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+PROPERTIES=live
+RDEPEND=sys-libs/ncurses x11-libs/libxcb sys-libs/pam dev-libs/libpcre sys-libs/readline dev-libs/libev dev-libs/libconfig sys-devel/gcc
+SLOT=0
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=9189a1ad6d9710046d602bb91d4ce40f

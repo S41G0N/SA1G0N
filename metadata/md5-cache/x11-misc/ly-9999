@@ -1,0 +1,14 @@
+BDEPEND=>=dev-lang/zig-0.12.0 >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install postinst prepare unpack
+DEPEND=sys-libs/pam x11-libs/libxcb net-misc/wget
+DESCRIPTION=Ly - a lightweight TUI display manager for Linux and BSD
+EAPI=8
+HOMEPAGE=https://github.com/fairyglade/ly
+INHERIT=git-r3
+IUSE=systemd openrc
+LICENSE=WTFPL-2
+PROPERTIES=live
+RDEPEND=sys-libs/pam x11-libs/libxcb net-misc/wget x11-base/xorg-server x11-apps/xauth sys-apps/util-linux
+SLOT=0
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=317a46fdc65c56a8c74738583cfdc7c5

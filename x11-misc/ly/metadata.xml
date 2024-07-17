@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd"\>
+<pkgmetadata>
+  <maintainer type="person">
+    <email>saigon-tech@tuta.io</email>
+    <name>SA1G0N</name>
+  </maintainer>
+  <longdescription>
+    Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD.
+  </longdescription>
+</pkgmetadata>
+
