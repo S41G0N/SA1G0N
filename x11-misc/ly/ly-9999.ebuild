@@ -20,8 +20,6 @@ DEPEND="
     net-misc/wget
 "
 RDEPEND="${DEPEND}
-    x11-base/xorg-server
-    x11-apps/xauth
     sys-apps/util-linux
 "
 BDEPEND="
