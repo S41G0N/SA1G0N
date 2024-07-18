@@ -13,4 +13,4 @@ REQUIRED_USE=^^ ( python_single_target_python3_10 python_single_target_python3_1
 SLOT=0
 SRC_URI=https://github.com/AdnanHodzic/auto-cpufreq/archive/refs/tags/v2.3.0.tar.gz -> auto-cpufreq-2.3.0.tar.gz
 _eclasses_=multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	8b220bbce5c119fb1d4d5c2f5588f3ea	python-single-r1	75118e916668a74c660a13b0ecb22562	systemd	c8b03e8df84486aa991d4396686e8942	desktop	021728fdc1b03b36357dbc89489e0f0d
-_md5_=182bb0b5cc6991d7de3208e8bed173ea
+_md5_=85b89a2bb93607657110d66190017eef

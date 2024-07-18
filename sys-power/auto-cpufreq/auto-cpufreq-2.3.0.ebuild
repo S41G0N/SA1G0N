@@ -45,9 +45,14 @@ src_prepare() {
 }
 
 src_install() {
+    # Install the entire auto_cpufreq directory
     python_moduleinto auto_cpufreq
-    python_domodule auto_cpufreq/*.py
+    python_domodule auto_cpufreq
+
+    # Install the main script
     python_newscript auto_cpufreq/bin/auto_cpufreq.py auto-cpufreq
+
+    # Install the GUI script if gtk USE flag is set
     use gtk && python_newscript auto_cpufreq/bin/auto_cpufreq_gtk.py auto-cpufreq-gtk
 
     # Install scripts
@@ -85,7 +90,6 @@ src_install() {
 }
 
 pkg_postinst() {
-    xdg_desktop_database_update
     if use openrc; then
         elog "To enable auto-cpufreq daemon service at boot:"
         elog "OpenRC: rc-update add auto-cpufreq default"
@@ -98,7 +102,8 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-    xdg_desktop_database_update
+	# Remove existing policy file to avoid collision
+    rm -f "${EROOT}/usr/share/polkit-1/actions/org.auto-cpufreq.pkexec.policy"
 }
 
 pkg_prerm() {
@@ -119,4 +124,21 @@ pkg_prerm() {
     if [[ -f /usr/bin/cpufreqctl.auto-cpufreq.bak ]]; then
         mv /usr/bin/cpufreqctl.auto-cpufreq.bak /usr/bin/cpufreqctl
     fi
+
+	# Remove auto-cpufreq log file
+	if [ -f "/var/log/auto-cpufreq.log" ]; then
+		rm /var/log/auto-cpufreq.log || die
+	fi
+
+	# Remove auto-cpufreq's cpufreqctl binary
+	# it overwrites cpufreqctl.sh
+	if [ -f "/usr/bin/cpufreqctl" ]; then
+		rm /usr/bin/cpufreqctl || die
+	fi
+
+	# Restore original cpufreqctl binary if backup was made
+	if [ -f "/usr/bin/cpufreqctl.auto-cpufreq.bak" ]; then
+		mv /usr/bin/cpufreqctl.auto-cpufreq.bak /usr/bin/cpufreqctl || die
+	fi
+
 }
