@@ -26,7 +26,6 @@ RDEPEND="
         >=dev-python/pygobject-3.46.0[${PYTHON_USEDEP}]
         dev-python/pyinotify[${PYTHON_USEDEP}]
         dev-python/psutil[${PYTHON_USEDEP}]
-        dev-python/power[${PYTHON_USEDEP}]
     ')
     sys-apps/dmidecode
     dev-libs/gobject-introspection
