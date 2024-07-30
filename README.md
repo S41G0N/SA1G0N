@@ -9,6 +9,7 @@ Welcome to the SA1G0N Gentoo ebuild repository! This repository is dedicated to 
 ### Current Packages
 
 - **ly**: A lightweight and fast display manager with a focus on simplicity and performance.
+- **auto-cpufreq**: Automatic CPU speed & power optimizer for Linux
 
 ### Planned Additions
 
