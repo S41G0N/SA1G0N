@@ -1,5 +1,5 @@
 # Copyright 2024 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
+# Distributed under the terms of the GNU General Public License
 
 EAPI=8
 
