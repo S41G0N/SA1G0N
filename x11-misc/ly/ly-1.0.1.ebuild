@@ -20,7 +20,7 @@ SRC_URI="
 "
 LICENSE="WTFPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~arch"
 
 EZIG_MIN="0.12"
 DEPEND="
@@ -38,8 +38,8 @@ RDEPEND="
 RES="${S}/res"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-build-zig-zon.patch"
-	"${FILESDIR}/${PN}-zigini-build-zig-zon.patch"
+	"${FILESDIR}/${PN}-build-zig-zon-${PV}.patch"
+	"${FILESDIR}/${PN}-zigini-build-zig-zon-${PV}.patch"
 )
 
 src_unpack() {
