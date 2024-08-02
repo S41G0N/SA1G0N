@@ -58,10 +58,18 @@ src_compile() {
 	zig build || die "Zig build failed"
 }
 
-src_install(){
-	dobin "${S}/zig-out/bin/${PN}"
-	newinitd "${RES}/${PN}-openrc" ly
-	systemd_dounit "${RES}/${PN}.service"
+src_install() {
+    dobin "${S}/zig-out/bin/${PN}"
+    newinitd "${RES}/${PN}-openrc" ly
+    systemd_dounit "${RES}/${PN}.service"
+
+    insinto /etc/ly
+    doins "${RES}/config.ini" "${RES}/xsetup.sh" "${RES}/wsetup.sh"
+
+    insinto /etc/ly/lang
+    doins "${RES}"/lang/*.ini
+
+    newpamd "${RES}/pam.d/ly" ly
 }
 
 pkg_postinst() {
