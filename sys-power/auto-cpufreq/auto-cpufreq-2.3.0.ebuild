@@ -31,8 +31,6 @@ BDEPEND="
 
 DOCS=( README.md )
 
-PATCHES="${FILESDIR}/auto-cpufreq-remove-poetry_versioning.patch"
-
 src_prepare() {
     default
     # Update pyproject.toml to avoid dynamic_versioning in poetry
