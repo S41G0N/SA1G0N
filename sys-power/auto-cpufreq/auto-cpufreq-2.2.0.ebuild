@@ -33,44 +33,18 @@ DOCS=( README.md )
 
 src_prepare() {
     default
-
-    # Print initial content of pyproject.toml
-    einfo "Initial pyproject.toml content:"
-    cat pyproject.toml
-
-    # Remove dynamic versioning from pyproject.toml
-    sed -i '/^version/s/= .*/= "'${PV}'"/' pyproject.toml || die
-    sed -i '/poetry-dynamic-versioning/d' pyproject.toml || die
-    sed -i '/tool.poetry-dynamic-versioning/d' pyproject.toml || die
-
-    # Update build-system section
+    # Update pyproject.toml to avoid dynamic_versioning in poetry
     sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/' pyproject.toml || die
-    sed -i '/poetry-dynamic-versioning/d' pyproject.toml || die
-
-    # Remove invalid scripts configuration
-    sed -i '/enable = true/d' pyproject.toml || die
-    sed -i '/vcs = "git"/d' pyproject.toml || die
-    sed -i '/format = "v{base}+{commit}"/d' pyproject.toml || die
-
-    # Print modified content of pyproject.toml
-    einfo "Modified pyproject.toml content:"
-    cat pyproject.toml
-
-	# Replace /usr/local/share with /usr/share in auto-cpufreq-install.sh
+	# Replace /usr/local/ paths with /usr/ in the source code to adhere to Gentoo standards
     sed -i 's|/usr/local/share|/usr/share|g' scripts/auto-cpufreq-install.sh || die
-
-    # Adjust paths
     sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/core.py || die
     sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/gui/app.py || die
-
-	# Modify the service file
+	# Modify the service file to launch auto-cpufreq natively without the need for virtual environment
     sed -i 's|WorkingDirectory=/opt/auto-cpufreq/venv||g' scripts/auto-cpufreq.service || die
     sed -i 's|Environment=PYTHONPATH=/opt/auto-cpufreq||g' scripts/auto-cpufreq.service || die
     sed -i 's|ExecStart=/opt/auto-cpufreq/venv/bin/python /opt/auto-cpufreq/venv/bin/auto-cpufreq --daemon|ExecStart=/usr/bin/auto-cpufreq --daemon|g' scripts/auto-cpufreq.service || die
-
 	# Change the path in core.py
     sed -i 's|/opt/auto-cpufreq/override.pickle|/var/lib/auto-cpufreq/override.pickle|g' auto_cpufreq/core.py || die
-
     distutils-r1_src_prepare
 }
 
