@@ -91,7 +91,7 @@ python_install() {
     domenu scripts/auto-cpufreq-gtk.desktop
 
     # Install systemd service file
-    systemd_douserunit "scripts/${PN}.service"
+    systemd_dounit "scripts/${PN}.service"
 
     # Install OpenRC init script
     newinitd "scripts/${PN}-openrc" "${PN}"
