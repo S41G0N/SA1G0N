@@ -1,6 +1,7 @@
 # SA1G0N - Gentoo Ebuild Repository
 
-Welcome to the SA1G0N Gentoo ebuild repository! This repository is dedicated to updating and maintaining ebuilds for packages that I use. Whether you're looking for up-to-date ebuilds for your favorite software or want to contribute to keeping Gentoo packages fresh, you've come to the right place.
+Welcome to the SA1G0N Gentoo ebuild repository! This repository is dedicated to updating and maintaining ebuilds for packages that I use. 
+Ebuilds contained in this repository are tested and then sent to Gentoo's GURU development branch.
 
 ![Demo Image](img/demo.png)
 

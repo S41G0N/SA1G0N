@@ -1,14 +1,13 @@
 BDEPEND=virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=compile install postinst unpack
+DEFINED_PHASES=compile install postinst setup unpack
 DEPEND=|| ( dev-lang/zig-bin:0.12 dev-lang/zig:0.12 ) sys-libs/pam x11-libs/libxcb
-DESCRIPTION=Ly - a TUI display manager
+DESCRIPTION=Ly - a TUI display manager (live ebuild)
 EAPI=8
 HOMEPAGE=https://github.com/fairyglade/ly
-INHERIT=systemd git-r3
+INHERIT=edo pam systemd git-r3
 LICENSE=WTFPL-2
 PROPERTIES=live
 RDEPEND=x11-base/xorg-server x11-apps/xauth sys-libs/ncurses
 SLOT=0
-SRC_URI=https://github.com/Hejsil/zig-clap/archive/refs/tags/0.9.1.tar.gz -> zig-clap-0.9.1.tar.gz https://github.com/Kawaii-Ash/zigini/archive/bdb6fd15c6dcedb0c6c2a46381f2d298e2f05fff.tar.gz -> zigini-bdb6fd15c6dcedb0c6c2a46381f2d298e2f05fff.tar.gz https://github.com/ziglibs/ini/archive/e8a2da707555c5afd2618ce48cda19e6f4c2b693.tar.gz -> ziglibini-e8a2da707555c5afd2618ce48cda19e6f4c2b693.tar.gz
-_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	systemd	c8b03e8df84486aa991d4396686e8942	git-r3	875eb471682d3e1f18da124be97dcc81
-_md5_=10f52b25a2595a55b079730c3e98901b
+_eclasses_=edo	367e103a74bf77e6a8da7894d999fa3c	toolchain-funcs	0c713337f7872f1a002cecaaea9bef73	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	e503ea5acc20410237ba33ec3f7c857d	pam	b56d0c9c20fc5b553f13c8ae165a10a5	systemd	c8b03e8df84486aa991d4396686e8942	git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=bd1b819084be4fda7b718b0d2a008d17
