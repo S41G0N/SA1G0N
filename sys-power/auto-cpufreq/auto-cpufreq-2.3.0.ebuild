@@ -6,7 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 DISTUTILS_USE_PEP517=poetry
 
-inherit distutils-r1 systemd xdg-utils desktop
+inherit distutils-r1 systemd xdg-utils desktop prefix
 
 DESCRIPTION="Automatic CPU speed & power optimizer for Linux"
 HOMEPAGE="https://github.com/AdnanHodzic/auto-cpufreq"
@@ -35,10 +35,8 @@ src_prepare() {
 	default
 	# Update pyproject.toml to avoid dynamic_versioning in poetry
 	sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/' pyproject.toml || die
-	# Replace /usr/local/ paths with /usr/ in the source code to adhere to Gentoo standards
-	sed -i 's|/usr/local/share|/usr/share|g' scripts/auto-cpufreq-install.sh || die
-	sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/core.py || die
-	sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/gui/app.py || die
+	# Use hprefixify for simple /usr/local to /usr replacements to adhere to Gentoo standards
+    hprefixify scripts/auto-cpufreq-install.sh "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/core.py auto_cpufreq/gui/app.py
 	# Modify the service file to launch auto-cpufreq natively without the need for virtual environment
 	sed -i 's|WorkingDirectory=/opt/auto-cpufreq/venv||g' scripts/auto-cpufreq.service || die
 	sed -i 's|Environment=PYTHONPATH=/opt/auto-cpufreq||g' scripts/auto-cpufreq.service || die
@@ -120,27 +118,23 @@ pkg_postrm() {
 	xdg_icon_cache_update
 	xdg_desktop_database_update
 
-	# Remove the polkit policy
-	if [ -f "/usr/share/polkit-1/actions/org.auto-cpufreq.pkexec.policy" ]; then
-		rm -rf /usr/share/polkit-1/actions/org.auto-cpufreq.pkexec.policy || die
-	fi
-
 	# Remove the override.pickle file and directory
-	if [[ -d "/var/lib/auto-cpufreq" ]]; then
-		rm -rf /var/lib/auto-cpufreq
+	if [[ -d "${EROOT}/var/lib/auto-cpufreq" ]]; then
+		rm -rf "${EROOT}"/var/lib/auto-cpufreq || die
 	fi
 
 	# Remove auto-cpufreq log file
-	if [ -f "/var/log/auto-cpufreq.log" ]; then
-		rm /var/log/auto-cpufreq.log || die
+	if [ -f "${EROOT}/var/log/auto-cpufreq.log" ]; then
+		rm "${EROOT}"/var/log/auto-cpufreq.log || die
+	fi
+
+	# Restore original cpufreqctl binary if backup was made
+	if [ -f "${EROOT}/usr/bin/cpufreqctl.auto-cpufreq.bak" ]; then
+		mv "${EROOT}"/usr/bin/cpufreqctl.auto-cpufreq{.bak,} || die
 	fi
 	# Remove auto-cpufreq's cpufreqctl binary
 	# it overwrites cpufreqctl.sh
-	if [ -f "/usr/bin/cpufreqctl" ]; then
-		rm /usr/bin/cpufreqctl || die
-	fi
-	# Restore original cpufreqctl binary if backup was made
-	if [ -f "/usr/bin/cpufreqctl.auto-cpufreq.bak" ]; then
-		mv /usr/bin/cpufreqctl.auto-cpufreq.bak /usr/bin/cpufreqctl || die
+	if [ -f "${EROOT}/usr/bin/cpufreqctl" ]; then
+		rm "${EROOT}"/usr/bin/cpufreqctl || die
 	fi
 }
