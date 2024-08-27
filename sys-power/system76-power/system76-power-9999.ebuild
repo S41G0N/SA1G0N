@@ -3,23 +3,19 @@
 
 EAPI=8
 
-CRATES="
-"
-
 inherit cargo git-r3
 
 DESCRIPTION="System76 Power Management"
 HOMEPAGE="https://github.com/pop-os/system76-power"
-SRC_URI="$(cargo_crate_uris ${CRATES})"
 EGIT_REPO_URI="https://github.com/pop-os/system76-power"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 
-DEPEND=""
+DEPEND="sys-apps/systemd"
 RDEPEND="${DEPEND}"
-BDEPEND=""
+BDEPEND="virtual/rust"
 
 src_unpack(){
 	git-r3_src_unpack
