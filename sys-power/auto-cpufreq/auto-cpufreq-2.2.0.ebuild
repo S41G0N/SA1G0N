@@ -6,7 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 DISTUTILS_USE_PEP517=poetry
 
-inherit distutils-r1 systemd xdg-utils desktop prefix
+inherit distutils-r1 systemd xdg-utils desktop
 
 DESCRIPTION="Automatic CPU speed & power optimizer for Linux"
 HOMEPAGE="https://github.com/AdnanHodzic/auto-cpufreq"
@@ -35,8 +35,10 @@ src_prepare() {
 	default
 	# Update pyproject.toml to avoid dynamic_versioning in poetry
 	sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/' pyproject.toml || die
-	# Replace hardcoded paths using hprefixify in the source code to adhere to Gentoo standards
-    hprefixify scripts/auto-cpufreq-install.sh "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/core.py auto_cpufreq/gui/app.py
+	# Replace /usr/local/ paths with /usr/ in the source code to adhere to Gentoo standards
+	sed -i 's|/usr/local/share|/usr/share|g' scripts/auto-cpufreq-install.sh || die
+	sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/core.py || die
+	sed -i 's|usr/local|usr|g' "scripts/${PN}.service" "scripts/${PN}-openrc" auto_cpufreq/gui/app.py || die
 	# Modify the service file to launch auto-cpufreq natively without the need for virtual environment
 	sed -i 's|WorkingDirectory=/opt/auto-cpufreq/venv||g' scripts/auto-cpufreq.service || die
 	sed -i 's|Environment=PYTHONPATH=/opt/auto-cpufreq||g' scripts/auto-cpufreq.service || die
