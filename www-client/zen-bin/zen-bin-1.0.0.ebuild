@@ -14,7 +14,7 @@ SRC_URI="https://github.com/zen-browser/desktop/releases/download/${MY_PV}/${MY_
 
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 
 IUSE="+alsa +gmp-autoupdate +pulseaudio selinux wayland"
 
