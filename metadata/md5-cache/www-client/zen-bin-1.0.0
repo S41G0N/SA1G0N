@@ -1,13 +1,13 @@
-BDEPEND=app-arch/unzip
 DEFINED_PHASES=install postinst postrm
-DEPEND=!www-client/zen-bin:0 >=app-accessibility/at-spi2-core-2.46.0:2 >=dev-libs/glib-2.26:2 media-libs/alsa-lib media-libs/fontconfig >=media-libs/freetype-2.4.10 sys-apps/dbus virtual/freedesktop-icon-theme >=x11-libs/cairo-1.10[X] x11-libs/gdk-pixbuf:2 >=x11-libs/gtk+-3.11:3[X,wayland?] x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes x11-libs/libXi x11-libs/libXrandr x11-libs/libXrender x11-libs/libxcb >=x11-libs/pango-1.22.0 alsa? ( !pulseaudio? ( media-sound/apulse ) ) pulseaudio? ( media-libs/libpulse ) selinux? ( sec-policy/selinux-mozilla )
+DEPEND=dev-libs/atk dev-libs/expat dev-libs/glib:2 dev-libs/nspr dev-libs/nss media-libs/alsa-lib media-libs/fontconfig media-libs/freetype media-libs/mesa net-print/cups sys-apps/dbus sys-libs/glibc x11-libs/cairo x11-libs/gdk-pixbuf x11-libs/gtk+:3 x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes x11-libs/libXi x11-libs/libXrandr x11-libs/libXrender x11-libs/libXtst x11-libs/pango pulseaudio? ( media-sound/pulseaudio )
 DESCRIPTION=Zen Browser - A Firefox-based browser focused on privacy
 EAPI=8
 HOMEPAGE=https://github.com/zen-browser/desktop
 INHERIT=xdg-utils desktop
+IUSE=pulseaudio
 LICENSE=MPL-2.0
-RDEPEND=!www-client/zen-bin:0 >=app-accessibility/at-spi2-core-2.46.0:2 >=dev-libs/glib-2.26:2 media-libs/alsa-lib media-libs/fontconfig >=media-libs/freetype-2.4.10 sys-apps/dbus virtual/freedesktop-icon-theme >=x11-libs/cairo-1.10[X] x11-libs/gdk-pixbuf:2 >=x11-libs/gtk+-3.11:3[X,wayland?] x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes x11-libs/libXi x11-libs/libXrandr x11-libs/libXrender x11-libs/libxcb >=x11-libs/pango-1.22.0 alsa? ( !pulseaudio? ( media-sound/apulse ) ) pulseaudio? ( media-libs/libpulse ) selinux? ( sec-policy/selinux-mozilla )
+RDEPEND=dev-libs/atk dev-libs/expat dev-libs/glib:2 dev-libs/nspr dev-libs/nss media-libs/alsa-lib media-libs/fontconfig media-libs/freetype media-libs/mesa net-print/cups sys-apps/dbus sys-libs/glibc x11-libs/cairo x11-libs/gdk-pixbuf x11-libs/gtk+:3 x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes x11-libs/libXi x11-libs/libXrandr x11-libs/libXrender x11-libs/libXtst x11-libs/pango pulseaudio? ( media-sound/pulseaudio )
 SLOT=0
 SRC_URI=https://github.com/zen-browser/desktop/releases/download/1.0.0-a.34/zen.linux-specific.tar.bz2 -> zen-bin-1.0.0.tar.bz2
 _eclasses_=xdg-utils	baea6080dd821f5562d715887954c9d3	desktop	021728fdc1b03b36357dbc89489e0f0d
-_md5_=831fed2f575dea713638fadc7cddd951
+_md5_=693d305a45e14e03fc419f4d3b4daf4b
