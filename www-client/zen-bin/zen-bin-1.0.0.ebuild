@@ -12,28 +12,41 @@ DESCRIPTION="Zen Browser - A Firefox-based browser focused on privacy"
 HOMEPAGE="https://github.com/zen-browser/desktop"
 SRC_URI="https://github.com/zen-browser/desktop/releases/download/${MY_PV}/${MY_P}.linux-specific.tar.bz2 -> ${P}.tar.bz2"
 
-LICENSE=""  # Add appropriate license
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
-RDEPEND="
-    x11-libs/libXcomposite
-    x11-libs/libXcursor
-    x11-libs/libXdamage
-    x11-libs/libXext
-    x11-libs/libXfixes
-    x11-libs/libXi
-    x11-libs/libXrandr
-    x11-libs/libXrender
-    x11-libs/libXtst
-    x11-libs/gtk+:3
-    media-libs/alsa-lib
-    media-libs/mesa
-    media-video/ffmpeg
-    sys-libs/glibc
-    virtual/opengl
-    dev-libs/nss
+IUSE="+alsa +gmp-autoupdate +pulseaudio selinux wayland"
+
+BDEPEND="app-arch/unzip"
+RDEPEND="${DEPEND}
+	!www-client/zen-bin:0
+	>=app-accessibility/at-spi2-core-2.46.0:2
+	>=dev-libs/glib-2.26:2
+	media-libs/alsa-lib
+	media-libs/fontconfig
+	>=media-libs/freetype-2.4.10
+	sys-apps/dbus
+	virtual/freedesktop-icon-theme
+	>=x11-libs/cairo-1.10[X]
+	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.11:3[X,wayland?]
+	x11-libs/libX11
+	x11-libs/libXcomposite
+	x11-libs/libXcursor
+	x11-libs/libXdamage
+	x11-libs/libXext
+	x11-libs/libXfixes
+	x11-libs/libXi
+	x11-libs/libXrandr
+	x11-libs/libXrender
+	x11-libs/libxcb
+	>=x11-libs/pango-1.22.0
+	alsa? (
+		!pulseaudio? ( media-sound/apulse )
+	)
+	pulseaudio? ( media-libs/libpulse )
+	selinux? ( sec-policy/selinux-mozilla )
 "
 DEPEND="${RDEPEND}"
 
@@ -42,13 +55,8 @@ QA_PREBUILT="opt/zen/*"
 S="${WORKDIR}"
 
 src_install() {
-    local destdir="/opt/zen"
-
-    # Debug: List contents of work directory
-    einfo "Contents of work directory:"
-    find "${WORKDIR}" -type f
-
     # Create installation directory
+    local destdir="/opt/zen"
     dodir "${destdir}"
 
     # Install browser files
