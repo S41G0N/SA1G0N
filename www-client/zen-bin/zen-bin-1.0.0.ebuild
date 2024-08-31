@@ -12,6 +12,7 @@ DESCRIPTION="Zen Browser - A Firefox-based browser focused on privacy"
 HOMEPAGE="https://github.com/zen-browser/desktop"
 SRC_URI="https://github.com/zen-browser/desktop/releases/download/${MY_PV}/${MY_P}.linux-specific.tar.bz2 -> ${P}.tar.bz2"
 
+S="${WORKDIR}"
 LICENSE="MPL-2.0"
 SLOT="0"
 
@@ -52,7 +53,7 @@ src_install() {
 	local destdir="/opt/zen"
 	dodir "${destdir}"
 	#copy files into dest dir
-	cp -a "${WORKDIR}/zen"/* "${ED}${destdir}" || die
+	cp -a "${S}/zen"/* "${ED}${destdir}" || die
 	#create a symlink to the binary
 	dosym "${destdir}/zen-bin" "/usr/bin/zen-bin" || die
 	#add icons

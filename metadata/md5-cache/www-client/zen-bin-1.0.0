@@ -9,4 +9,4 @@ RDEPEND=dev-libs/expat dev-libs/glib:2 dev-libs/nspr dev-libs/nss media-libs/als
 SLOT=0
 SRC_URI=https://github.com/zen-browser/desktop/releases/download/1.0.0-a.34/zen.linux-specific.tar.bz2 -> zen-bin-1.0.0.tar.bz2
 _eclasses_=xdg-utils	baea6080dd821f5562d715887954c9d3	desktop	021728fdc1b03b36357dbc89489e0f0d
-_md5_=372b92cba9e00af7e980596bad5739ea
+_md5_=11b10218d75afd6d83860518fb85de22
