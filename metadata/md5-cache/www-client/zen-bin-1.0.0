@@ -11,4 +11,4 @@ RDEPEND=!www-client/zen-bin:0 >=app-accessibility/at-spi2-core-2.46.0:2 >=dev-li
 SLOT=0
 SRC_URI=https://github.com/zen-browser/desktop/releases/download/1.0.0-a.34/zen.linux-specific.tar.bz2 -> zen-bin-1.0.0.tar.bz2
 _eclasses_=xdg-utils	baea6080dd821f5562d715887954c9d3	desktop	021728fdc1b03b36357dbc89489e0f0d
-_md5_=ab291cae9da810fb0e36384750933ea4
+_md5_=397dfbe67abaac70a66d40990af9bc04

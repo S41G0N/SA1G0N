@@ -62,9 +62,6 @@ src_install() {
     # Install browser files
     cp -a "${S}/zen"/* "${ED}${destdir}" || die
 
-    # Create zen-bin symlink
-    dosym "${destdir}/zen-bin" "/usr/bin/zen-bin" || die
-
     # Install icons if they exist
     local icon_dir="${ED}${destdir}/browser/chrome/icons/default"
     if [[ -d "${icon_dir}" ]]; then
@@ -76,6 +73,29 @@ src_install() {
     else
         ewarn "Icon directory not found, skipping icon installation"
     fi
+
+	    # Install wrapper script
+    [[ -f "${ED}/usr/bin/zen-bin" ]] && rm "${ED}/usr/bin/zen-bin"
+    newbin "${FILESDIR}/zen-bin-r1.sh" zen-bin
+
+    # Update wrapper
+    local apulselib=
+    if use alsa && ! use pulseaudio ; then
+        apulselib="${EPREFIX}/usr/$(get_libdir)/apulse"
+    fi
+
+    local use_wayland="false"
+    if use wayland ; then
+        use_wayland="true"
+    fi
+
+    sed -i \
+        -e "s:@PREFIX@:${EPREFIX}/usr:" \
+        -e "s:@MOZ_FIVE_HOME@:${EPREFIX}/opt/zen:" \
+        -e "s:@APULSELIB_DIR@:${apulselib}:" \
+        -e "s:@DEFAULT_WAYLAND@:${use_wayland}:" \
+        "${ED}/usr/bin/zen-bin" \
+        || die
 
     # Create desktop entry
     make_desktop_entry zen-bin "Zen Browser" zen "Network;WebBrowser"
