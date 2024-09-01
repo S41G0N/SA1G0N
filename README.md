@@ -9,13 +9,15 @@ Ebuilds contained in this repository are tested and then sent to Gentoo's GURU d
 
 ### Current Packages
 
-- **ly**: A lightweight and fast display manager with a focus on simplicity and performance.
-- **auto-cpufreq**: Automatic CPU speed & power optimizer for Linux
+- **ly**: A lightweight and fast display manager with a focus on simplicity and performance. (In GURU now)
+- **auto-cpufreq**: Automatic CPU speed & power optimizer for Linux (In GURU now)
+- **system76-profile**: Tools and configurations for optimizing System76 hardware on Gentoo, including power management and performance tweaks. (In GURU now)
+- **auto-cpufreq**: A tool for automatic CPU battery optimization (In GURU now)
+- **Zen**: A Firefox-based privacy oriented browser with a wide range of customizations (Not in GURU yet)
 
 ### Planned Additions
 
 - **asusctl**: A utility to control various settings on Asus laptops, including fan speeds, RGB lighting, and power profiles.
-- **system76-profile**: Tools and configurations for optimizing System76 hardware on Gentoo, including power management and performance tweaks.
 
 ## Why This Repository?
 
@@ -55,7 +57,7 @@ Gentoo is a fantastic distribution for those who love customization and performa
 5. **Install the Packages:**
 
    ```sh
-   emerge --ask ly
+   emerge --ask zen-bin
    ```
 
 ## Contributing
