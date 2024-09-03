@@ -18,6 +18,7 @@ Ebuilds contained in this repository are tested and then sent to Gentoo's GURU d
 ### Planned Additions
 
 - **asusctl**: A utility to control various settings on Asus laptops, including fan speeds, RGB lighting, and power profiles.
+- **Ladybird**: A new browser from scratch in development
 
 ## Why This Repository?
 
